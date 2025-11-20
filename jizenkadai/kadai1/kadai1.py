@@ -12,9 +12,9 @@ def polymul(a,b):
 a = []
 b = []
 with open(sys.argv[1]) as f:
-    a = np.array([int(s.strip()) for s in f.readlines()],dtype=np.int32)
+    a = np.array([int(s.strip()) for s in f.readlines()],dtype=np.int64)
 with open(sys.argv[2]) as f:
-    b = np.array([int(s.strip()) for s in f.readlines()],dtype=np.int32)
+    b = np.array([int(s.strip()) for s in f.readlines()],dtype=np.int64)
 res = polymul(a,b)
 for i in res:
     print(i)
