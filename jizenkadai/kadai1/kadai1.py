@@ -1,13 +1,16 @@
 #!/bin/python3
 import numpy as np
 import sys
+# import mulfft
 
 n=1024
 
 def polymul(a,b):
     res = np.zeros(n,dtype=np.int64)
-    #ここに処理を書く。resに答えを入れれば良い。
+    # ここに処理を書く。resに答えを入れれば良い。
     return res
+    # 当日用高速版
+    # return mulfft.polymul(a,b)
 
 a = []
 b = []
