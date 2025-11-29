@@ -1,5 +1,4 @@
 import numpy as np
-import sympy
 import pyfftw
 
 pyfftw.interfaces.cache.enable()
@@ -10,7 +9,7 @@ def TwistGen(N):
     return np.array([np.exp(1j * k * np.pi / N) for k in range(N // 2)])
 
 def TwistGenLong(N):
-    return np.array([np.exp(1j * np.float128(k) * np.pi / N) for k in range(N // 2)])
+    return np.array([np.exp(1j * np.longdouble(k) * np.pi / N) for k in range(N // 2)])
 
 def TwistFFT(a, twist, dim=1):
     Ns2 = len(twist)
@@ -32,16 +31,16 @@ def TwistFFT(a, twist, dim=1):
 #To compute 64bit Torus multiplication, long double is needed.
 def TwistFFTlong(a, twist, dim =1):
     Ns2 = len(twist)
-    b = np.float128(a)
+    b = np.longdouble(a)
     # https://stackoverflow.com/questions/2598734/numpy-creating-a-complex-array-from-2-real-ones
     if dim == 1:
-        t = np.empty(Ns2, dtype=np.complex256)
+        t = np.empty(Ns2, dtype=np.clongdouble)
         t.real = b[:Ns2]
         t.imag = b[Ns2 : 2 * Ns2]
         t *= twist
         return pyfftw.interfaces.numpy_fft.fft(t)
     elif dim == 2:
-        t = np.empty((b.shape[0], Ns2), dtype=np.complex256)
+        t = np.empty((b.shape[0], Ns2), dtype=np.clongdouble)
         t.real = b[:, :Ns2]
         t.imag = b[:, Ns2 : 2 * Ns2]
         t *= twist
@@ -76,10 +75,10 @@ def polymul(a,b):
                 np.multiply(TwistFFTlong(np.int64(a), twistlong), TwistFFTlong(np.int64(b), twistlong)),
                 twistlong,
             )
-        )%np.float128(2)**64)
+        )%np.longdouble(2)**64)
     )
 
-# float128が動かない場合こちらを使用
+# longdoubleが動かない場合こちらを使用
 # twist = TwistGen(n)
 
 # def polymul(a, b, twist):  # a or b in R and other in T

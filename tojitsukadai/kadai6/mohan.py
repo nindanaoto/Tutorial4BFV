@@ -6,38 +6,31 @@ import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 from jizenkadai.kadai1.kadai1 import polymul, n
-from jizenkadai.kadai1.mulfft import TwistFFT, TwistIFFT, TwistFFTlong, TwistIFFTlong, twistlong, twist
+from jizenkadai.kadai1.mulfft import TwistFFTlong, TwistIFFTlong, twistlong
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 from kadai3.kadai3 import Encrypt, Decrypt, alpha, t, Delta
-from kadai5.kadai5 import ExtendedDecrypt
+from kadai5.mohan import ExtendedDecrypt
 
 def Extendedpolymul(a, b):
     res = np.zeros(n,dtype=np.int64)
     # ここに処理を書く。resに答えを入れれば良い。
-    # float128
-    # res = np.int64(np.uint64(
-    #     np.round(
-    #         TwistIFFTlong(
-    #             np.multiply(TwistFFTlong(np.int64(a), twistlong), TwistFFTlong(np.int64(b), twistlong)),
-    #             twistlong,
-    #         )/np.float128(Delta)
-    #     )%np.float128(2)**64)
-    # )
-    # float64
-    # res = np.uint64(
-    #     np.round(
-    #         TwistIFFT(
-    #             np.multiply(TwistFFT(np.int64(a), twist), TwistFFT(np.int64(b), twist)),
-    #             twist,
-    #         )/np.float64(Delta)
-    #     )
-    #     % 2 ** 64
-    # )
+    res = np.int64(np.uint64(
+        np.round(
+            TwistIFFTlong(
+                np.multiply(TwistFFTlong(np.int64(a), twistlong), TwistFFTlong(np.int64(b), twistlong)),
+                twistlong,
+            )/np.longdouble(Delta)
+        )%np.longdouble(2)**64)
+    )
     return res
 
 def Mul(c1, c2):
     res = np.zeros((3,n),dtype=np.int64)
     #ここに処理を書く。resに答えを入れれば良い。
+    res = np.zeros((3,n),dtype=np.int64)
+    res[0] = Extendedpolymul(c1[0], c2[1]) + Extendedpolymul(c1[1], c2[0])
+    res[1] = Extendedpolymul(c1[1], c2[1])
+    res[2] = Extendedpolymul(c1[0], c2[0])
     return res
 
 if __name__ == "__main__":
