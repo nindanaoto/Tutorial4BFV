@@ -3,7 +3,7 @@ import numpy as np
 import sys
 # import mulfft
 
-n=1024
+n=2048
 
 def polymul(a,b):
     res = np.zeros(n,dtype=np.int64)
