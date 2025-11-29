@@ -10,7 +10,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 from kadai3.kadai3 import Encrypt, Decrypt, alpha, t
 
 def Add(c1, c2):
-    c1+c2
+    res = c1+c2
     return res
 
 if __name__ == "__main__":
