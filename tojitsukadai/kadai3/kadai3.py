@@ -22,6 +22,12 @@ def ModularGaussian(alpha):
 def Encrypt(key, alpha):
     res = np.zeros((2,n),dtype=np.int64)
     # ここに処理を書く。resに答えを入れれば良い。
+    # a の生成
+    res[0] = np.random.randint(-q//2, q//2, size=n, dtype=np.int64)
+    # e の生成
+    e = ModularGaussian(alpha)
+    # b の計算
+    # res[1] = 
     return res
 
 def Decrypt(c, key):
