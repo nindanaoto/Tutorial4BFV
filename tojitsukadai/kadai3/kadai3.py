@@ -19,7 +19,7 @@ def ModularGaussian(alpha):
     res = np.int64(dtot64(np.random.normal(0, alpha, n)))
     return res
 
-def Encrypt(key, alpha):
+def Encrypt(m, key, alpha):
     res = np.zeros((2,n),dtype=np.int64)
     # ここに処理を書く。resに答えを入れれば良い。
     # a の生成
