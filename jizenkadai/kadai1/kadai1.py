@@ -9,6 +9,12 @@ def polymul(a,b):
     res = np.zeros(n,dtype=np.int64)
     # ここに処理を書く。resに答えを入れれば良い。
     return res
+    # res = np.zeros(n,dtype=np.int64)
+    # for i in range(n):
+    #     for j in range(n):
+    #         mul = a[i]*b[j]
+    #         res[(i+j)%n] += -mul if((i+j)>=n) else mul
+    # return res
     # 当日用高速版
     # return mulfft.polymul(a,b)
 
