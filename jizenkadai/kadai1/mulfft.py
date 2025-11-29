@@ -79,7 +79,10 @@ def polymul(a,b):
         )%np.float128(2)**64)
     )
 
-# def PolyMullvl2(a, b, twist):  # a or b in R and other in T
+# float128が動かない場合こちらを使用
+# twist = TwistGen(n)
+
+# def polymul(a, b, twist):  # a or b in R and other in T
 #     return np.uint64(
 #         np.round(
 #             TwistIFFT(

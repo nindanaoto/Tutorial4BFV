@@ -30,9 +30,22 @@ def Encrypt(m, key, alpha):
     # res[1] = 
     return res
 
+def Encrypt(m, key, alpha):
+    res = np.zeros((2,n),dtype=np.int64)
+    #ここに処理を書く。resに答えを入れれば良い。
+    # a の生成
+    res[0] = np.random.randint(-q//2, q//2, size=n, dtype=np.int64)
+    # e の生成
+    e = ModularGaussian(alpha)
+    # b の計算
+    res[1] = polymul(res[0], key) + e + (Delta * m)
+    return res
+
 def Decrypt(c, key):
     res = np.zeros(n,dtype=np.int64)
-    # ここに処理を書く。resに答えを入れれば良い。
+    #ここに処理を書く。resに答えを入れれば良い。
+    phase = c[1] - polymul(c[0], key)
+    res = ((np.uint64(phase) + (np.uint64(Delta) // 2)) // np.uint64(Delta)) % t
     return res
 
 if __name__ == "__main__":
