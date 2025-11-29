@@ -12,17 +12,21 @@ Delta = np.int64(np.uint64(q // t))
 
 def ModularGaussian(alpha):
     res = np.zeros(n,dtype=np.int64)
-    #ここに処理を書く。resに答えを入れれば良い。
+    # ここに処理を書く。resに答えを入れれば良い。
+    # 模範解答
+    def dtot64(d):
+        return np.uint64(np.round((d%1)*(2.0**64)))
+    res = np.int64(dtot64(np.random.normal(0, alpha, n)))
     return res
 
 def Encrypt(key, alpha):
     res = np.zeros((2,n),dtype=np.int64)
-    #ここに処理を書く。resに答えを入れれば良い。
+    # ここに処理を書く。resに答えを入れれば良い。
     return res
 
 def Decrypt(c, key):
     res = np.zeros(n,dtype=np.int64)
-    #ここに処理を書く。resに答えを入れれば良い。
+    # ここに処理を書く。resに答えを入れれば良い。
     return res
 
 if __name__ == "__main__":
