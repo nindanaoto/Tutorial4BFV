@@ -3,3 +3,13 @@
 講義資料であるスライドは以下のURLにて公開されます.
 
 https://nindanaoto.github.io/seccamp/html/2025/BFV.html
+
+## Requirements / 必要なもの
+
+Python 3
+
+## Installation / インストール方法
+
+```bash
+pip install -r requirements.txt
+```
